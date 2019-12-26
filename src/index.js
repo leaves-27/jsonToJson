@@ -12,16 +12,16 @@ const menus = [{
 	items: {},
 }];
 const config = {
-	inputDir: '/Users/leaves/Documents/workspace3/activity/static/json',
+	inputDir: '/Users/leaves/Documents/workspace3/activity/static/temp-json',
 	outDir: '/Users/leaves/Documents/workspace3/activity/static/json'
 };
 
 const newMenus = menus.map((item)=>{
 	try{
-		const preferential = fs.readFileSync(`${config.inputDir}/${item.name}.json`, 'utf-8');
+		const items = fs.readFileSync(`${config.inputDir}/${item.name}.json`, 'utf-8');
 		return {
 			...item,
-			items: preferential
+			items: JSON.parse(items)
 		}
 	} catch(err){
 		console.log('写文件出错', err);
